@@ -1,0 +1,6 @@
+C:\Users\Syahmi\Repos\TradingBot\TradingBot.Api\obj\Debug\net7.0\TradingBot.Api.csproj.AssemblyReference.cache
+C:\Users\Syahmi\Repos\TradingBot\TradingBot.Api\obj\Debug\net7.0\TradingBot.Api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Syahmi\Repos\TradingBot\TradingBot.Api\obj\Debug\net7.0\TradingBot.Api.AssemblyInfoInputs.cache
+C:\Users\Syahmi\Repos\TradingBot\TradingBot.Api\obj\Debug\net7.0\TradingBot.Api.AssemblyInfo.cs
+C:\Users\Syahmi\Repos\TradingBot\TradingBot.Api\obj\Debug\net7.0\TradingBot.Api.csproj.CoreCompileInputs.cache
+C:\Users\Syahmi\Repos\TradingBot\TradingBot.Api\obj\Debug\net7.0\TradingBot.Api.MvcApplicationPartsAssemblyInfo.cache
