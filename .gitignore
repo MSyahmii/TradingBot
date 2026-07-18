@@ -9,3 +9,7 @@ TradingBot.Api/appsettings.json
 /TradingBot.Infrastructure/obj
 /TradingBot.Domain/bin
 /TradingBot.Domain/obj
+/TradingBot.Infrastructure/obj
+/TradingBot.Infrastructure/obj
+/TradingBot.Infrastructure/obj
+/TradingBot.Infrastructure/obj
