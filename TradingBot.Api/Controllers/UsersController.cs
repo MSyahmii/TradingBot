@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using TradingBot.Application.Users.Login;
 using TradingBot.Application.Users.Register;
 
 namespace TradingBot.Api.Controllers;
@@ -7,19 +9,39 @@ namespace TradingBot.Api.Controllers;
 [Route("api/user")]
 public class UsersController : ControllerBase
 {
-    private readonly RegisterUserHandler _handler;
+    private readonly RegisterUserHandler _registerUserHandler;
+    private readonly LoginUserHandler _loginUserHandler;
 
-    public UsersController(RegisterUserHandler handler)
+    public UsersController(RegisterUserHandler registerUserHandler, LoginUserHandler loginUserHandler)
     {
-        _handler = handler;
+        _registerUserHandler = registerUserHandler;
+        _loginUserHandler = loginUserHandler;
     }
-
+          
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterUserRequest request)
     {
-        var result = await _handler.HandleAsync(request);
+        var result = await _registerUserHandler.HandleAsync(request);
 
         return Created(string.Empty, result);
     }
+
+    [HttpPost("login")]
+    public async Task<IActionResult> Login(LoginUserRequest request)
+    {
+        var token = await _loginUserHandler.HandleAsync(request);
+
+        return Ok(new { Token = token });
+    }
+
+    [HttpGet("Me")]
+    [Authorize]
+    public IActionResult Me()
+    {
+        var username = User.Claims.FirstOrDefault(c => c.Type == "username")?.Value;
+            
+        return Ok(new { Username = username });
+    }
+
 }  
 

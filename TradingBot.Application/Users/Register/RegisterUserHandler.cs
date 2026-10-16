@@ -11,10 +11,12 @@ namespace TradingBot.Application.Users.Register
     public class RegisterUserHandler
     {
         private readonly IUserRepository _userRepository;
+        private readonly IPasswordHasher _passwordHasher;
 
-        public RegisterUserHandler(IUserRepository userRepository)
+        public RegisterUserHandler(IUserRepository userRepository, IPasswordHasher passwordHasher)
         {
             _userRepository = userRepository;
+            _passwordHasher = passwordHasher;
         }
         public async Task<RegisterUserResponse> HandleAsync(RegisterUserRequest request)
         {
@@ -28,8 +30,14 @@ namespace TradingBot.Application.Users.Register
             {
                 throw new Exception("Email already exists.");
             }
+            if (string.IsNullOrEmpty(request.Password))
+            {
+                throw new Exception("Password is required.");
+            }
 
-            var user = new User(request.Username, request.Email);
+            var hashedPassword = _passwordHasher.Hash(request.Password);
+
+            var user = new User(request.Username, request.Email, hashedPassword);
 
             await _userRepository.AddAsync(user);
 
