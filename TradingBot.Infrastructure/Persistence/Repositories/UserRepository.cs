@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TradingBot.Application.Common.Interfaces;
 using TradingBot.Domain.Entities;
 using TradingBot.Infrastructure.Persistence.DbContexts;
