@@ -16,7 +16,7 @@ public class LoginUserHandler
         _jwtTokenGenerator = jwtTokenGenerator;
     }
 
-    public async Task<string> HandleAsync (LoginUserRequest request)
+    public async Task<LoginUserResponse> HandleAsync (LoginUserRequest request)
     {
         var user = await _userRepository.GetByEmailAsync(request.Email);
         if (user == null)
@@ -31,8 +31,11 @@ public class LoginUserHandler
             throw new Exception("Invalid email or password");
         }
 
-        var token = _jwtTokenGenerator.GenerateToken(user);
-        return token;
+        var accessToken = _jwtTokenGenerator.GenerateToken(user);
+        return new LoginUserResponse
+        {
+            AccessToken = accessToken
+        };
     }
  
 }

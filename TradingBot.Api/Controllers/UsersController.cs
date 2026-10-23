@@ -29,9 +29,9 @@ public class UsersController : ControllerBase
     [HttpPost("login")]
     public async Task<IActionResult> Login(LoginUserRequest request)
     {
-        var token = await _loginUserHandler.HandleAsync(request);
+        var result = await _loginUserHandler.HandleAsync(request);
 
-        return Ok(new { Token = token });
+        return Ok(result);
     }
 
     [HttpGet("Me")]
